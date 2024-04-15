@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="egovframework.example.reply.mapper.ReplyMapper">
+
+	<select id="listPage" resultType="egovframework.example.reply.vo.ReplyVO">
+		SELECT *
+		FROM TB_REPLY
+		WHERE sr_seq = #{srSeq}
+		order by rno DESC
+	</select>
+
+	<insert id="create">
+		INSERT INTO TB_REPLY
+			(	sr_seq
+			   ,content
+			   ,writer
+			   ,regdate 
+			) values(
+				#{srSeq}
+			   ,#{content}
+			   ,#{writer}
+			   ,SYSDATE
+			)
+	</insert>
+
+	<update id="update">
+		UPDATE TB_REPLY
+		SET content = #{content}
+		WHERE sr_seq = #{srSeq}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM TB_REPLY
+		WHERE sr_seq = #{srSeq}
+	</delete>
+	
+</mapper>
